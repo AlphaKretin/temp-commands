@@ -12,7 +12,7 @@ async function func(msg) {
     const val = terms.slice(1).join(" ");
     try {
         const opt = configs_1.config.getConfig(optName);
-        opt.setValue(val, msg);
+        opt.setValue(msg, val);
         const outMsg = opt.name + " changed to " + opt.getValue(msg);
         bot_1.bot.createMessage(msg.channel.id, outMsg);
     }
