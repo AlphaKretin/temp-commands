@@ -30,7 +30,7 @@ async function func(msg) {
     if (!count) {
         count = configs_1.config.getConfig("listDefault").getValue(msg);
     }
-    let cards = {};
+    let cards = [];
     const fullList = await data_1.data.getCardList();
     for (const code in fullList) {
         if (fullList.hasOwnProperty(code)) {
@@ -38,7 +38,7 @@ async function func(msg) {
             if (text.name.toLowerCase().includes(query) ||
                 text.desc.monsterBody.toLowerCase().includes(query) ||
                 (text.desc.pendBody && text.desc.pendBody.toLowerCase().includes(query))) {
-                cards[code] = fullList[code];
+                cards.push(fullList[code]);
             }
         }
     }

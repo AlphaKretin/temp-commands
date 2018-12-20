@@ -31,16 +31,18 @@ async function func(msg) {
         count = configs_1.config.getConfig("listDefault").getValue(msg);
     }
     const result = await data_1.data.getFuseList(query, lang);
-    let cards = {};
-    const fullList = await data_1.data.getCardList();
-    for (const code in result) {
-        if (result.hasOwnProperty(code)) {
-            cards[code] = fullList[code];
-        }
-    }
+    let cards = [];
     if (filterText) {
         const filter = new ygopro_data_1.Filter(await ygopro_data_1.Filter.parse(filterText, lang));
-        cards = filter.filter(cards);
+        cards = await filter.simpleFilter(result);
+    }
+    else {
+        for (const c of result) {
+            const card = await data_1.data.getCard(c.id);
+            if (card) {
+                cards.push(card);
+            }
+        }
     }
     await util_1.sendCardList(cards, lang, msg, count, "Top " + count + " fuzzy card name searches for `" + query + "`");
 }
