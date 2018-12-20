@@ -27,9 +27,6 @@ async function func(msg) {
     if (count && count > max) {
         count = max;
     }
-    if (!count) {
-        count = configs_1.config.getConfig("listDefault").getValue(msg);
-    }
     const result = await data_1.data.getFuseList(query, lang);
     let cards = [];
     if (filterText) {
@@ -44,7 +41,7 @@ async function func(msg) {
             }
         }
     }
-    await util_1.sendCardList(cards, lang, msg, count, "Top " + count + " fuzzy card name searches for `" + query + "`");
+    await util_1.sendCardList(cards, lang, msg, count, "Top %s fuzzy card name searches for `" + query + "`");
 }
 exports.command = new Command_1.Command(names, func);
 //# sourceMappingURL=matches.js.map

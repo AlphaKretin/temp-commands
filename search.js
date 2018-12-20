@@ -27,9 +27,6 @@ async function func(msg) {
     if (count && count > max) {
         count = max;
     }
-    if (!count) {
-        count = configs_1.config.getConfig("listDefault").getValue(msg);
-    }
     let cards = [];
     const fullList = await data_1.data.getCardList();
     for (const code in fullList) {
@@ -47,7 +44,7 @@ async function func(msg) {
         const filter = new ygopro_data_1.Filter(await ygopro_data_1.Filter.parse(filterText, lang));
         cards = filter.filter(cards);
     }
-    await util_1.sendCardList(cards, lang, msg, count, "Top " + count + " card text matches for `" + query + "`:");
+    await util_1.sendCardList(cards, lang, msg, count, "Top %s card text matches for `" + query + "`:");
 }
 exports.command = new Command_1.Command(names, func);
 //# sourceMappingURL=search.js.map
