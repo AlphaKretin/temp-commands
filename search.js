@@ -35,9 +35,10 @@ async function func(msg) {
     for (const code in fullList) {
         if (fullList.hasOwnProperty(code)) {
             const text = fullList[code].text[lang];
-            if (text.name.toLowerCase().includes(query) ||
-                text.desc.monsterBody.toLowerCase().includes(query) ||
-                (text.desc.pendBody && text.desc.pendBody.toLowerCase().includes(query))) {
+            if (text &&
+                (text.name.toLowerCase().includes(query) ||
+                    text.desc.monsterBody.toLowerCase().includes(query) ||
+                    (text.desc.pendBody && text.desc.pendBody.toLowerCase().includes(query)))) {
                 cards.push(fullList[code]);
             }
         }
