@@ -41,7 +41,7 @@ async function func(msg) {
             }
         }
     }
-    await util_1.sendCardList(cards, lang, msg, count, "Top %s fuzzy card name searches for `" + query + "`");
+    await util_1.sendCardList(cards, lang, msg, count, "Top %s card name fuzzy searches for `" + query + "`");
 }
 exports.command = new Command_1.Command(names, func);
 //# sourceMappingURL=matches.js.map
